@@ -1,7 +1,7 @@
 #summary One-sentence summary of this page.
 #labels Featured,Phase-Design,Phase-Implementation
 
-= Que es el siestema? =
+= Que es el sistema? =
 
 El sistema para abogados esta enfocado a la gestión el abogado en la organización de los casos que pueda llevar este. llevando todo a una oficina virtual accesible desde la web
 
