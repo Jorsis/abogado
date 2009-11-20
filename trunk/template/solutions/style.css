@@ -317,38 +317,6 @@ hr { display: none; }
 	font-size: 12px;
 }
 
-#sidebar ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	line-height: normal;
-}
-
-#sidebar li {
-	margin-bottom: 30px;
-	padding: 0 0 10px 0px;
-}
-
-#sidebar li ul {
-	margin: 0px 14px;
-}
-
-#sidebar li li {
-	margin: 0;
-	padding: 12px 0px;
-	border-bottom: 1px solid #E9E8DD;
-	background: url(images/img08.gif) no-repeat left 18px;
-}
-
-#sidebar li li a {
-	padding: 0px 0px 0px 20px;
-	font-weight: normal;
-	color: #808080;
-}
-
-#sidebar li li a:hover {
-	color: #77B003;
-}
 
 #sidebar p {
 	margin: 0;
