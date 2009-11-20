@@ -43,5 +43,9 @@ Released   : 20091102
 	<!-- end #header -->
 	<!-- end #header-wrapper -->
 	<div id="page">
+	<div id="sidebar">
+		<?= $menu ?>
+		</div>
 		<div id="content">
+		
 		  <div class="post" style="height:350px" >
