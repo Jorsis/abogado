@@ -23,7 +23,7 @@ class Core {
 	    include("include/adodb5/adodb.inc.php");	 
 	    try { 
 		  $db = NewADOConnection($dbconfig['type']); 
-		  $db->Connect($dbconfig['hostname'],$dbconfig['username'],$dbconfig['password']); 
+		  $db->Connect($dbconfig['hostname'],$dbconfig['username'],$dbconfig['password'], $dbconfig['dbname']); 
 		  $db->debug = $this->debugdb;
 	    } catch (exception $e) { 
 	        echo "<pre>";
