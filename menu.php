@@ -1,6 +1,38 @@
 <?php
+/*require_once('core.php');
+$core = new Core();
+$core->inicio();*/
 
-$menu = '<div id="dhtmlgoodies_menu" style="visibility: hidden;">
+
+$sql = "SELECT * FROM menu WHERE protected = '1' ORDER BY name";
+$rs = $core->db->Execute($sql);
+
+$menu = '<div id="dhtmlgoodies_menu" style="visibility: hidden;"><ul>';
+
+
+
+while (!$rs->EOF) {
+    
+    $menu .= '<li><a href="#">' . $rs->fields['name'] . '</a>';
+    $menu .= '<ul>';
+    
+    $sql = "SELECT * FROM menu WHERE parentID = '{$rs->fields['id']}' ORDER BY name";
+    $submenu = $core->db->Execute($sql);
+    
+    while (!$submenu->EOF) {
+        $form = $submenu->fields['form'];
+        
+    	$menu .= '<li><a href="#" onclick="createNewWindow(\''. $submenu->fields['name'] . '\', \'http://localhost/abogado/content.php?idcontent='. $form . '\', \''. $form . '\');return false">'. $submenu->fields['name'] . '</a></li>';
+    	$submenu->MoveNext();
+    }
+    $menu .= '</li></ul>';
+    
+	$rs->MoveNext();
+}
+$menu .= '</ul>';
+$menu .= '</div>';
+
+$menus = '<div id="dhtmlgoodies_menu" style="visibility: hidden;">
 		<ul>
 			<li><a href="#">Sistema Judicial</a>
 				<ul>
@@ -42,5 +74,6 @@ $menu = '<div id="dhtmlgoodies_menu" style="visibility: hidden;">
 			<li><a href="#">Fin</a></li>
 		</ul>
 		</div>';
+
 
 ?>

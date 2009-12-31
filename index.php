@@ -1,20 +1,25 @@
 <?php
-if (!isset($_SERVER['PHP_AUTH_USER'])) {
-    header('WWW-Authenticate: Basic realm="My Realm"');
-    header('HTTP/1.0 401 Unauthorized');
-    echo 'Text to send if user hits Cancel button';
-    exit;
-} else {
-    echo "<p>Hello {$_SERVER['PHP_AUTH_USER']}.</p>";
-    echo "<p>You entered {$_SERVER['PHP_AUTH_PW']} as your password.</p>";
-}
-?>
+require_once('include/function.inc.php');
+require_once('core.php');
+;
 
-<?
+$valid = false;
+
+if (!isset($_SERVER['PHP_AUTH_USER'])) {
+    authUser();
+} else {
+    
+    if (validUser($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])) {
+    	$valid = true;
+    }
+}
+
+if ($valid == false) {
+	authUser();
+}
 
 $dirtemplate = "./template/solutions/";
-require_once('core.php');
-require_once('menu.php');
+
 
 /**
  * llamado de Script
@@ -48,7 +53,7 @@ var DHTML_SUITE_THEME = 'light-cyan';
 /**
  * Fin llamado Script
  */
-
+require_once('menu.php');
 require_once($dirtemplate . 'header.inc.php');
 
 ?>
@@ -89,14 +94,30 @@ colorWindow.init();
 
 
 <script type="text/javascript">
-function createNewWindow(titlewindow)
+function createNewWindow(titlewindow, html, idtab, tabhelp)
 {
-var newWindowModel = new DHTMLSuite.windowModel({windowsTheme:true,id:'newWindow',title:titlewindow,xPos:200,yPos:200,minWidth:100,minHeight:100 } );
-newWindowModel.addTab({ id:'myTab',htmlElementId:'myTab',tabTitle:'tab1',
-textContent:'Hola' } );
-newWindowModel.addTab({ id:'myTab2',htmlElementId:'myTab2',tabTitle:'tab2',
-textContent:'Hola' } );
+var newWindowModel = new DHTMLSuite.windowModel({windowsTheme:true,id:'newWindow'.idtab,title:titlewindow,xPos:200,yPos:200,minWidth:100,minHeight:100 } );
+newWindowModel.addTab({ id:idtab,htmlElementId:idtab,tabTitle:titlewindow,
+textContent:'Informacion',contentUrl:html} );
+if (tabhelp == '1'){
+newWindowModel.addTab({ id:'help'.idtab,htmlElementId:'help'.idtab,tabTitle:'Ayuda',
+textContent:'ayuda para el usuario' } );
+}
 var newWindowWidget = new DHTMLSuite.windowWidget(newWindowModel);
 newWindowWidget.init();
 }
+</script>
+
+
+<!-- Para el editor -->
+
+<script type="text/javascript" src="./include/tiny_mce/tiny_mce.js"></script>
+
+<script type="text/javascript">
+tinyMCE.init({
+theme : "advanced",
+mode : "textareas",
+plugins : "fullpage",
+theme_advanced_buttons3_add : "fullpage"
+});
 </script>

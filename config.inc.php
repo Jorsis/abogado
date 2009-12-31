@@ -4,7 +4,8 @@
 $dbconfig = array('username' => "abogado",
             'password' => "4bogado",
             'hostname' => "localhost",
-            'type'     => "mysql");
+            'type'     => "mysql",
+            'dbname'   => "abogado");
 
 
 ?>
