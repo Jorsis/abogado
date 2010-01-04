@@ -1,4 +1,27 @@
 <?php
+require_once('include/function.inc.php');
+/**
+ * Llamado de xajax
+ */
+
+require ('./include/xajax_0.5_standard/xajax_core/xajax.inc.php');
+$xajax = new xajax();
+$xajax->configure('debug', true);
+$xajax->configure('javascript URI', './include/xajax_0.5_standard/');
+
+$xajax->registerFunction('insertActuacion');
+
+
+$xajax->processRequest();
+
+
+/**
+ * Fin xajax
+ */
+
+?>
+
+<?php
 
 /*include('core.php');
 
@@ -43,6 +66,10 @@ eval(base64_decode('JF9YPWJhc2U2NF9kZWNvZGUoJF9YKTskX1g9c3RydHIoJF9YLCcxMjM0NTZh
 var DHTML_SUITE_THEME_FOLDER = 'script/window/theme/';
 </SCRIPT> 
 
+
+
+
+
 <div id="myWindow"
 windowProperties="title:My window,width:440,height:380,maxWidth:900,cookieName:window,
 xPos:5,yPos:170,minWidth:365,minHeight:250,activeTabId:windowTab2">
@@ -81,3 +108,40 @@ newWindowWidget.init();
 }
 </script>
 <a href="#" onclick="createNewWindow();return false">Create window</A> 
+
+
+<?php
+
+
+$string = "beautiful";
+$time = "winter";
+
+$str = 'echo "<table align="left" style="width:200;">
+    <tr style="width:200;">
+        <td style="width:150;"><b>Actuaci&oacute;n</b></td>
+        <td style="width:25;"><b>Editar</b></td>
+        <td style="width:25;"><b>Borrar</b></td>
+    
+    <tr>
+</table>"; if (5==5) echo "no se";';
+//echo $str. "<br />";
+
+eval($str);
+//echo $str;
+
+
+
+?>
+<?php $xajax->printJavascript(); ?>
+
+<table align="left">
+    <tr>
+        <td><b>Crear Actuación</b></td>
+    </tr>
+    <tr>
+        <td><input type="text" name="actuacion" id="actuacion"></td>
+    </tr>
+    <tr>
+        <td><input type="button" name="saveActuacion" id="saveActuacion" value="Guardar" onclick="xajax_insertActuacion(document.getElementById('actuacion').value);"></td>
+    </tr>
+</table>

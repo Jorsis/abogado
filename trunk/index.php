@@ -1,7 +1,7 @@
 <?php
 require_once('include/function.inc.php');
 require_once('core.php');
-;
+
 
 $valid = false;
 
@@ -17,6 +17,30 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 if ($valid == false) {
 	authUser();
 }
+
+/**
+ * Llamado de xajax
+ */
+
+require ('./include/xajax_0.5_standard/xajax_core/xajax.inc.php');
+$xajax = new xajax();
+//$xajax->configure('debug', true);
+$xajax->configure('javascript URI', './include/xajax_0.5_standard/');
+
+$xajax->registerFunction('insertActuacion');
+$xajax->registerFunction('EditFieldActuacion');
+$xajax->registerFunction('editActuacion');
+$xajax->registerFunction('returnValueActuacion');
+$xajax->registerFunction('deleteActuacion');
+$xajax->registerFunction('confirmDeleteActuacion');
+
+
+$xajax->processRequest();
+
+
+/**
+ * Fin xajax
+ */
 
 $dirtemplate = "./template/solutions/";
 
@@ -133,3 +157,7 @@ plugins : "fullpage",
 theme_advanced_buttons3_add : "fullpage"
 });
 </script>
+
+
+
+<?php $xajax->printJavascript(); ?>
