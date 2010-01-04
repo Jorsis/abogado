@@ -47,10 +47,12 @@ function validUser($user, $password){
 function listHtml($id){
     global $core;
     
+    $core->db->Execute('SET NAMES utf8');
+    
     $sql = "SELECT * FROM html WHERE id = '{$id}'";
     $rs = $core->db->Execute($sql);
     
-    return stripslashes($rs->fields['html']);
+    return array(stripslashes($rs->fields['html']), $rs->fields['eval']);
 }
 
 ?>

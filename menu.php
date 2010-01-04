@@ -21,8 +21,13 @@ while (!$rs->EOF) {
     
     while (!$submenu->EOF) {
         $form = $submenu->fields['form'];
+        $list = 0;
+        if (0 != $submenu->fields['list']) {
+        	$list = $submenu->fields['list'];
+        }
         
-    	$menu .= '<li><a href="#" onclick="createNewWindow(\''. $submenu->fields['name'] . '\', \'http://localhost/abogado/content.php?idcontent='. $form . '\', \''. $form . '\');return false">'. $submenu->fields['name'] . '</a></li>';
+        
+    	$menu .= '<li><a href="#" onclick="createNewWindow(\''. $submenu->fields['name'] . '\', \'http://localhost/abogado/content.php?idcontent=\', \''. $form . '\', \''. $list . '\', \'0\', \'0\');return false">'. $submenu->fields['name'] . '</a></li>';
     	$submenu->MoveNext();
     }
     $menu .= '</li></ul>';

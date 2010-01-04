@@ -94,13 +94,25 @@ colorWindow.init();
 
 
 <script type="text/javascript">
-function createNewWindow(titlewindow, html, idtab, tabhelp)
+function createNewWindow(titlewindow, html, idtab, list, edit, deleterecord, tabhelp)
 {
-var newWindowModel = new DHTMLSuite.windowModel({windowsTheme:true,id:'newWindow'.idtab,title:titlewindow,xPos:200,yPos:200,minWidth:100,minHeight:100 } );
+var newWindowModel = new DHTMLSuite.windowModel({windowsTheme:true,id:'newWindow'+idtab,title:titlewindow,xPos:200,yPos:200,minWidth:100,minHeight:100 } );
 newWindowModel.addTab({ id:idtab,htmlElementId:idtab,tabTitle:titlewindow,
-textContent:'Informacion',contentUrl:html} );
+textContent:'Informacion',contentUrl:html + idtab} );
+if (list != '0'){
+newWindowModel.addTab({ id:'list'+idtab,htmlElementId:'list'.idtab,tabTitle:'Listado',
+textContent:'Para listar los registros del formulario',contentUrl:html + list } );
+}
+if (edit != '0'){
+newWindowModel.addTab({ id:'edit'+idtab,htmlElementId:'edit'.idtab,tabTitle:'Edición',
+textContent:'Para editar los registros guardados',contentUrl:html + idtab } );
+}
+if (deleterecord != '0'){
+newWindowModel.addTab({ id:'deleterecord'+idtab,htmlElementId:'deleterecord'.idtab,tabTitle:'Borrar Registros',
+textContent:'Para borar los registros',contentUrl:html + idtab } );
+}
 if (tabhelp == '1'){
-newWindowModel.addTab({ id:'help'.idtab,htmlElementId:'help'.idtab,tabTitle:'Ayuda',
+newWindowModel.addTab({ id:'help'+idtab,htmlElementId:'help'.idtab,tabTitle:'Ayuda',
 textContent:'ayuda para el usuario' } );
 }
 var newWindowWidget = new DHTMLSuite.windowWidget(newWindowModel);
