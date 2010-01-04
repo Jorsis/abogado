@@ -6,8 +6,9 @@ if ($_REQUEST['idcontent']) {
 	if (0 == $html[1]) {
 		echo $html[0];
 	}else {
-	    eval("\$str = \"$html[0]\";");
-        echo $str. "\n";
+	    
+	    eval($html[0]);
+        
 	}
 }else {
     echo "Hubo un problema al tratar de cargar la información";
